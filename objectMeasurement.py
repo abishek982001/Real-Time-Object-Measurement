@@ -6,6 +6,7 @@ utils = utils.Utils()
 
 class ObjectMeasurement:
     def __init__(self, flag, path):
+        """Parameterised constructor for initialising values"""
         self.webcam = flag
         self.path = path
         self.cap = cv2.VideoCapture(0)
@@ -17,6 +18,8 @@ class ObjectMeasurement:
         self.heightOfPaper = 297*self.scale
         
     def run(self):
+        """Function to start the webcam or load the image according to users choice and perform the 
+        required calculations for a single frame"""
         if self.webcam:
             success, img =self.cap.read()
         else:
