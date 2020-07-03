@@ -20,9 +20,9 @@ def getContours(img, cannyThreshold=[100,100], showCanny=False, minArea=1000, fi
             bbox = cv2.boundingRect(approx)
             if filter > 0:
                 if len(approx) == filter:
-                    finalContours.append(len(approx), area, approx, bbox, contour)
+                    finalContours.append([len(approx), area, approx, bbox, contour])
             else:
-                finalContours.append((len(approx), area, approx, bbox, contour))
+                finalContours.append([len(approx), area, approx, bbox, contour])
         finalContours = sorted(finalContours, key=lambda x:x[1], reverse=True)
         if draw:
             for contour in finalContours:

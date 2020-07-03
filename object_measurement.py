@@ -15,7 +15,11 @@ while True:
     else:
         img = cv2.imread(path)
 
-    img, finalContours = utils.getContours(img, showCanny=True, draw=True)
+    img, finalContours = utils.getContours(img, showCanny=True, minArea=50000, filter=4)
+    if len(finalContours) != 0:
+        biggest = finalContours[0][2]
+        print(biggest)
+
     img = cv2.resize(img, (0,0), None, 0.5, 0.5)
     cv2.imshow("Original", img)
     cv2.waitKey(1)
