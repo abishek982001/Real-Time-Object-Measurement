@@ -28,3 +28,19 @@ def getContours(img, cannyThreshold=[100,100], showCanny=False, minArea=1000, fi
             for contour in finalContours:
                 cv2.drawContours(img, contour[4], -1, (0,0,255), 3)
     return img, finalContours
+
+def reorder(points):
+    shape = points.shape
+    newPoints = np.zeros_like(points)
+    points = points.reshape((shape[0],shape[2]))
+    add = points.sum(1)
+    newPoints[0] = points[np.argmin(add)]
+    newPoints[3] = points[np.argmax(add)]
+    diff = np.diff(points, axis=1)
+    newPoints[1] = points[np.argmin(diff)]
+    newPoints[2] = points[np.argmax(diff)]
+    return newPoints
+
+def warpImage(img, points, width, height):
+    # print(points)
+    # print(reorder(points))
