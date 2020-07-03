@@ -15,7 +15,7 @@ while True:
     else:
         img = cv2.imread(path)
 
-    utils.getContours(img, showCanny=True)
+    img, finalContours = utils.getContours(img, showCanny=True, draw=True)
     img = cv2.resize(img, (0,0), None, 0.5, 0.5)
     cv2.imshow("Original", img)
     cv2.waitKey(1)
