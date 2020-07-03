@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
-import utils
+import modified_utils
+
+utils = modified_utils.Utils()
 
 class ObjectMeasurement:
     def __init__(self):
@@ -11,8 +13,8 @@ class ObjectMeasurement:
         self.cap.set(3,1920)  # width of the camera frame
         self.cap.set(4,1000)  # height of the camera frame
         self.scale = 2
-        self.widthOfPaper = 210*scale
-        self.heightOfPaper = 297*scale
+        self.widthOfPaper = 210*self.scale
+        self.heightOfPaper = 297*self.scale
 
     def webCamStatus(self):
         if self.webcam:
@@ -44,3 +46,4 @@ class ObjectMeasurement:
                 cv2.putText(imgContours2, '{}cm'.format(newHeight), (x - 70, y + h // 2), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5,
                             (255, 0, 255), 2)       
             cv2.imshow("A4", imgContours2)
+            return img
