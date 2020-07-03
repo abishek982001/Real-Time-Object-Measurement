@@ -3,7 +3,11 @@ import numpy as np
 
 class Utils:
     def getContours(self, img, cannyThreshold=[100,100], showCanny=False, minArea=1000, filter=0, draw=False):
-        imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        try:
+            imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        except:
+            print("Invalid image path")
+            exit(0)
         imgBlur = cv2.GaussianBlur(imgGray, (5,5), 1)
         imgCanny = cv2.Canny(imgBlur, cannyThreshold[0], cannyThreshold[1])
         kernel = np.ones((5,5))

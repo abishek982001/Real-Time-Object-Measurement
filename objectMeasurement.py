@@ -15,16 +15,12 @@ class ObjectMeasurement:
         self.scale = 2
         self.widthOfPaper = 210*self.scale
         self.heightOfPaper = 297*self.scale
-
-    def webCamStatus(self):
+        
+    def run(self):
         if self.webcam:
             success, img =self.cap.read()
         else:
-            img = cv2.imread(self.path)
-        return img
-        
-    def run(self):
-        img = self.webCamStatus()
+            img = cv2.imread(self.path) 
         imgContours, finalContours = utils.getContours(img, minArea=50000, filter=4)
         if len(finalContours) != 0:
             biggest = finalContours[0][2]
@@ -46,4 +42,6 @@ class ObjectMeasurement:
                 cv2.putText(imgContours2, '{}cm'.format(newHeight), (x - 70, y + h // 2), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.5,
                             (255, 0, 255), 2)       
             cv2.imshow("A4", imgContours2)
-            return img
+        img = cv2.resize(img, (0,0), None, 0.5, 0.5)
+        cv2.imshow("Original", img)
+        cv2.waitKey(1)
