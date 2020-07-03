@@ -51,3 +51,6 @@ def warpImage(img, points, width, height, pad=20):
     imgWarp = cv2.warpPerspective(img, matrix, (width,height))
     imgWarp = imgWarp[pad:imgWarp.shape[0]-pad, pad:imgWarp.shape[1]-pad] # To remove the edges in the A4 paper
     return imgWarp
+
+def findDistance(pts1, pts2):
+    return ((pts2[0]-pts1[0])**2 + (pts2[1]-pts1[1])**2)**0.5
