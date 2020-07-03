@@ -45,7 +45,7 @@ class Utils:
     def warpImage(self, img, points, width, height, pad=20):
         # print(points)
         # print(reorder(points))
-        points = reorder(points)
+        points = self.reorder(points)
         pst1 = np.float32(points)
         pst2 = np.float32([[0,0], [width,0], [0,height], [width,height]])
         matrix = cv2.getPerspectiveTransform(pst1, pst2)
