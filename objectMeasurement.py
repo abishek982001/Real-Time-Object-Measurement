@@ -1,13 +1,13 @@
 import cv2
 import numpy as np
-import modified_utils
+import utils
 
-utils = modified_utils.Utils()
+utils = utils.Utils()
 
 class ObjectMeasurement:
-    def __init__(self):
-        self.webcam = False
-        self.path = '1.jpg'
+    def __init__(self, flag, path):
+        self.webcam = flag
+        self.path = path
         self.cap = cv2.VideoCapture(0)
         self.cap.set(10,160)  # brightness of the camera
         self.cap.set(3,1920)  # width of the camera frame
