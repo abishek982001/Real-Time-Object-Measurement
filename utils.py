@@ -41,6 +41,13 @@ def reorder(points):
     newPoints[2] = points[np.argmax(diff)]
     return newPoints
 
-def warpImage(img, points, width, height):
+def warpImage(img, points, width, height, pad=20):
     # print(points)
     # print(reorder(points))
+    points = reorder(points)
+    pst1 = np.float32(points)
+    pst2 = np.float32([[0,0], [width,0], [0,height], [width,height]])
+    matrix = cv2.getPerspectiveTransform(pst1, pst2)
+    imgWarp = cv2.warpPerspective(img, matrix, (width,height))
+    imgWarp = imgWarp[pad:imgWarp.shape[0]-pad, pad:imgWarp.shape[1]-pad] # To remove the edges in the A4 paper
+    return imgWarp
