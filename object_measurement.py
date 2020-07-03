@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import utils
 
 webcam = False
 path = '1.jpg'
@@ -13,6 +14,8 @@ while True:
         success, img =cap.read()
     else:
         img = cv2.imread(path)
+
+    utils.getContours(img, showCanny=True)
     img = cv2.resize(img, (0,0), None, 0.5, 0.5)
     cv2.imshow("Original", img)
     cv2.waitKey(1)
