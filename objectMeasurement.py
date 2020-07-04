@@ -5,9 +5,9 @@ import utils
 utils = utils.Utils()
 
 class ObjectMeasurement:
-    def __init__(self, flag, path):
+    def __init__(self, path):
         """Parameterised constructor for initialising values"""
-        self.webcam = flag
+        self.webcam = False
         self.path = path
         self.cap = cv2.VideoCapture(0)
         self.cap.set(10,160)  # brightness of the camera
